@@ -3,7 +3,9 @@
 @implementation NSString (ValidNumber)
 
 - (BOOL)isValidNumber {
-    return false;
+    NSNumberFormatter *numFormatter = [[NSNumberFormatter alloc] init];
+    BOOL isNumber = [numFormatter numberFromString:self] != nil;
+    return isNumber;
 }
 
 @end
