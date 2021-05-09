@@ -7,24 +7,17 @@
         return @[];
     }
     
-    NSString *num_str = [[NSString alloc] initWithFormat: @"%@", number];
-
-    NSMutableString *reversedString = [NSMutableString new];
-    while ([num_str length] != [reversedString length]) {
-        NSRange range = NSMakeRange([num_str length] - [reversedString length] - 1, 1);
-        [reversedString appendString: [num_str substringWithRange:range]];
-    }
+    NSString *numberStr = [[NSString alloc] initWithFormat: @"%@", number];
+    NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:[numberStr length]];
     
-    NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:[reversedString length]];
-    for (int i = 0; i < [reversedString length]; i++) {
-        NSString *strChar  = [NSString stringWithFormat:@"%c", [reversedString characterAtIndex:i]];
-        [result addObject:strChar];
+    for (int i = 0; i < [numberStr length]; i++) {
+        NSRange range = NSMakeRange([numberStr length] - i - 1, 1);
+        [result addObject:[numberStr substringWithRange:range]];
     }
     
     if (number.doubleValue < 0) {
         [result removeLastObject];
     }
-    
     return result;
 }
 
